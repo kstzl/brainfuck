@@ -6,8 +6,6 @@ void parse(char *expr, int *mem)
 {
     int loop_count = 0;                             //On initie le nombre de boucles à zéro.
 
-    //printf("Running : %s\n", expr);
-
     while (*expr)                                   //Tant que nous ne somme pas à la fin de la chaîne
     {
         switch (*expr)                              //Switch sur le caractère
@@ -40,9 +38,9 @@ void parse(char *expr, int *mem)
                     }
                 }
 
-                break;
+                                            break;
             
-            default:                        break;
+            default:                        break;  //Par défaut, on ne fais rien
         }
         ++expr;                                     //On avance
     }
