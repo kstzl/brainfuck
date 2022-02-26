@@ -4,6 +4,10 @@
 //Elle prend en paramètre la chaine de caractère et la mémoire.
 void parse(char *expr, int *mem)
 {
+    int loop_count = 0;                             //On initie le nombre de boucles à zéro.
+
+    //printf("Running : %s\n", expr);
+
     while (*expr)                                   //Tant que nous ne somme pas à la fin de la chaîne
     {
         switch (*expr)                              //Switch sur le caractère
@@ -15,15 +19,28 @@ void parse(char *expr, int *mem)
             case '.':   putchar(*mem);      break;  //On affiche le caractère de la valeure pointée
             case ',':   (*mem) = getchar(); break;  //On met le caractère de la valeure pointée
 
-            case ']':                               //Si on atteint une fin de boucle,
-                if (*mem)                           //Et que *ptr
+            case ']':                               //Quand on atteint la fin d'une boucle,
+                if (*mem)                           //Si le poineur " n'est pas nul "
                 {
-                    while (*expr != '[')            //On va reculer jusqu'à trouver le début de la boucle
+                    loop_count = 1;                 //Par défault le nombre de boucle est 1
+                    char c;
+
+                    while (loop_count > 0)          //Tant que on est dans une boucle
                     {
-                        --expr;
+                        c = *(--expr);              //Le caractère est le précédent         
+
+                        if (c == '[')               //Si on atteint le début d'une boucle, on enlève 1 au compteur
+                        {
+                            loop_count--;
+                        }
+                        else if (c == ']')          //Si on atteint la fin d'une boucle, on l'incrémente
+                        {
+                            loop_count++;
+                        }
                     }
                 }
-                                            break;
+
+                break;
             
             default:                        break;
         }
@@ -34,6 +51,9 @@ void parse(char *expr, int *mem)
 int main()
 {
     int memory[3000];
-    char *expr = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+    //char *expr = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+    char *expr = "+++[> +++ [.-] <-]";
     parse(expr, memory);
+
+    //printf("finish", expr);
 }
