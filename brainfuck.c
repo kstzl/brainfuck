@@ -51,6 +51,6 @@ int main()
     int memory[3000];
     char *expr = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
     
-    //char *expr = "+++[> +++ [.-] <-]"; // <--- NESTED LOOP EXAMPLE
+    //char *expr = "+++[> +++ [.-] <-]"; // <--- Exemple de boucle imbriquée
     parse(expr, memory);
 }
